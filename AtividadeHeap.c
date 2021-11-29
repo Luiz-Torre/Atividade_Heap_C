@@ -5,7 +5,7 @@
 
 
 void InsereElemento(int valor, int * tam_n, int * vetor);
-
+void ImprimeElemento(int *tam_n, int * vetor);
 int main(){
     int *vetor;
     vetor = NULL;
@@ -32,6 +32,7 @@ int main(){
 
             case 3:
                 puts("\nHeap impressa aqui");
+                ImprimeElemento(tam_n,vetor);
                 break;
 
             case 4:
@@ -53,4 +54,11 @@ void InsereElemento(int valor, int * tam_n, int * vetor){
     vetor = realloc (vetor, ((*tam_n) + 1) * sizeof (int));
     vetor[*tam_n] = valor;
     *tam_n++;
+}
+
+void ImprimeElemento(int *tam_n, int * vetor){
+    puts("O vetor heap é: ");
+    for(int i=0;i<*tam_n;i++){
+        printf(" %d", vetor[i]);
+    }
 }
