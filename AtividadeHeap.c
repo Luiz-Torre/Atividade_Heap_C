@@ -3,15 +3,14 @@
 #include <math.h>
 
 
+int TOTAL_ELEMENTOS;
 
-void InsereElemento(int valor, int * tam_n, int * vetor);
-void ImprimeElemento(int *tam_n, int * vetor);
+void InsereElemento(int valor, int * vetor);
+void ImprimeElemento(int * vetor);
 int main(){
+    TOTAL_ELEMENTOS = 0;
     int *vetor;
-    vetor = NULL;
-    int * tam_n;
-    tam_n = (int * ) malloc(1*sizeof(int));
-    *tam_n = 0;
+    vetor = (int * ) malloc(1*sizeof(int));
     int removido = 0, num, valor;
     printf("Digite 1, 2, 3 ou 4 :\n1- Inserir um elemento na heap\n2- Remover um elemento\n3- Imprimir a Heap\n4- Sair:\n");
     scanf("%d", &num);
@@ -23,7 +22,7 @@ int main(){
             case 1:
                 puts("Informe o elemento que deseja inserir");
                 scanf("%d", &valor);
-                InsereElemento(valor,tam_n,vetor);
+                InsereElemento(valor,vetor);
 
                 break;
             case 2:
@@ -31,7 +30,7 @@ int main(){
                 break;
 
             case 3:
-                ImprimeElemento(tam_n,vetor);
+                ImprimeElemento(vetor);
                 break;
 
             case 4:
@@ -42,7 +41,6 @@ int main(){
                 puts("\nNúmero invalido.");
                 break;
         }
-        printf("\nAAA : %d", *tam_n);
         printf("\nDigite 1, 2, 3 ou 4 :\n1- Inserir um elemento na heap\n2- Remover um elemento\n3- Imprimir a Heap\n4- Sair\n");
         scanf("%d", &num);
     }
@@ -50,17 +48,21 @@ int main(){
 
 
 
-void InsereElemento(int valor, int * tam_n, int * vetor){
-    vetor = realloc (vetor, ((*tam_n) + 1) * sizeof (int));
-    vetor[*tam_n] = valor;
-    *tam_n = *tam_n + 1 ;
-    printf("\nBBB : %d", *tam_n);
+void InsereElemento(int valor, int * vetor){
+    if(TOTAL_ELEMENTOS == 0){
+        vetor[TOTAL_ELEMENTOS] = valor;
+    }
+    else{
+        vetor = (int*) realloc (vetor, (TOTAL_ELEMENTOS +1) * sizeof(int));
+        vetor[TOTAL_ELEMENTOS] = valor;
+    }
+    TOTAL_ELEMENTOS++;
 
 }
 
-void ImprimeElemento(int *tam_n, int * vetor){
-    puts("O vetor heap é: ");
-    for(int i=0;i<*tam_n;i++){
-        printf(" %d", vetor[i]);
+void ImprimeElemento(int * vetor){
+    printf("O vetor heap é: ");
+    for(int i=0;i<TOTAL_ELEMENTOS;i++){
+        printf("%d ", vetor[i]);
     }
 }
