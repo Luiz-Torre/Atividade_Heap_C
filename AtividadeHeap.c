@@ -45,6 +45,7 @@ int main(){
 
             case 4:
                 puts("Limpar o vetor aqui");
+                free(vetor);
                 exit(0);
                 break;
             default:
